@@ -3,6 +3,7 @@ using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddHttpContextAccessor();
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
