@@ -8,6 +8,8 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ITargetingContextAccessor, HttpTargetingContextAccessor>();
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
+    .AddFeatureFilter<PercentageFilter>()
+    .AddFeatureFilter<TimeWindowFilter>()
     .AddFeatureFilter<TargetingFilter>();
 
 var app = builder.Build();
