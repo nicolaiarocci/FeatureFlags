@@ -9,7 +9,6 @@ builder.Services
     .AddFeatureFilter<PercentageFilter>();
 
 var app = builder.Build();
-app.UseHttpsRedirection();
 
 var weatherforecastGroup = app.MapGroup("/weatherforecast")
     .AddEndpointFilter(new FeatureFilter("WeatherForecast"));
