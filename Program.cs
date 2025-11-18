@@ -7,7 +7,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ITargetingContextAccessor, HttpTargetingContextAccessor>();
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
-    .AddFeatureFilter<PercentageFilter>();
+    .AddFeatureFilter<TimeWindowFilter>();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
