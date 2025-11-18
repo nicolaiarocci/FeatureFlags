@@ -9,7 +9,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    if (!builder.Configuration.GetValue<bool>("FeatureFlags:WeatherForecast"))
+    if (!app.Configuration.GetValue<bool>("FeatureFlags:WeatherForecast"))
         return Results.NotFound();
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
