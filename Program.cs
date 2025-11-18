@@ -1,6 +1,7 @@
 using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"));
 
