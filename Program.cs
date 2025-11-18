@@ -1,9 +1,13 @@
 using FeatureFlags;
 using Microsoft.FeatureManagement;
+using Microsoft.FeatureManagement.FeatureFilters;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<ITargetingContextAccessor, HttpTargetingContextAccessor>();
 builder.Services
-    .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"));
+    .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
+    .AddFeatureFilter<PercentageFilter>();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
