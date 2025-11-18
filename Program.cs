@@ -1,15 +1,15 @@
 using FeatureFlags;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.FeatureManagement;
-using Microsoft.FeatureManagement.FeatureFilters;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpContextAccessor();
+
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
     .AddFeatureFilter<MyCustomFilter>();
 
-
 var app = builder.Build();
+
 app.UseHttpsRedirection();
 
 var weatherforecastGroup = app.MapGroup("/weatherforecast")
@@ -20,8 +20,11 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-weatherforecastGroup.MapGet("", () =>
+app.MapGet("/weatherforecast", async (IFeatureManager manager, [FromHeader(Name = "X-Lucky-Number")] int? inputNumber) =>
 {
+
+    if (!await manager.IsEnabledAsync("WeatherForecast", new MyCustomFilterContext { InputNumber = inputNumber ?? 0 }))
+        return Results.NotFound();
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
