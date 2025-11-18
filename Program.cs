@@ -3,9 +3,11 @@ using Microsoft.FeatureManagement;
 using Microsoft.FeatureManagement.FeatureFilters;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddHttpContextAccessor();
 // Register the Targeting context accessor
 builder.Services.AddSingleton<ITargetingContextAccessor, HttpTargetingContextAccessor>();
+
 builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"))
     .AddFeatureFilter<PercentageFilter>()
