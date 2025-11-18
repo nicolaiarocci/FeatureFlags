@@ -1,0 +1,11 @@
+bin/
+obj/
+/packages/.idea
+logs/
+.idea/
+.claude/
+appsettings.Secrets.*
+*.private.env.json
+TestResults/
+SECURITY_REVIEW_UPDATED.md
+SECURITY_REVIEW.md
