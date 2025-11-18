@@ -3,8 +3,6 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 app.UseHttpsRedirection();
 
-const bool forecastEnabled = false;
-
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -12,7 +10,7 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
-    if (!forecastEnabled)
+    if (!builder.Configuration.GetValue<bool>("FeatureFlags:WeatherForecast"))
         return Results.NotFound();
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
