@@ -8,12 +8,15 @@ builder.Services
 var app = builder.Build();
 app.UseHttpsRedirection();
 
+var weatherforecastGroup = app.MapGroup("/weatherforecast")
+    .AddEndpointFilter(new FeatureFilter("WeatherForecast"));
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", async (IFeatureManager manager) =>
+weatherforecastGroup.MapGet("", () =>
 {
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
@@ -25,9 +28,7 @@ app.MapGet("/weatherforecast", async (IFeatureManager manager) =>
         ))
         .ToArray();
     return Results.Ok(forecast);
-})
-.AddEndpointFilter(new FeatureFilter("WeatherForecast"));
-// .WithEndpointFeatureFilter("WeatherForecast");
+});
 
 app.Run();
 
