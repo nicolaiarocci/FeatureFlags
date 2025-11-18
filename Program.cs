@@ -1,3 +1,4 @@
+using FeatureFlags;
 using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,10 +13,8 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", async (IFeatureManager manager) =>
+app.MapGet("/weatherforecast", () =>
 {
-    if (!await manager.IsEnabledAsync("WeatherForecast"))
-        return Results.NotFound();
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
@@ -26,7 +25,8 @@ app.MapGet("/weatherforecast", async (IFeatureManager manager) =>
         ))
         .ToArray();
     return Results.Ok(forecast);
-});
+})
+.AddEndpointFilter(new FeatureFilter("WeatherForecast"));
 
 app.Run();
 
