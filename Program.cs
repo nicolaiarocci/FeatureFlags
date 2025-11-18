@@ -1,4 +1,8 @@
+using Microsoft.FeatureManagement;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services
+    .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"));
 
 var app = builder.Build();
 app.UseHttpsRedirection();
@@ -8,9 +12,9 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", async (IFeatureManager manager) =>
 {
-    if (!builder.Configuration.GetValue<bool>("FeatureFlags:WeatherForecast"))
+    if (!await manager.IsEnabledAsync("WeatherForecast"))
         return Results.NotFound();
 
     var forecast = Enumerable.Range(1, 5).Select(index =>
