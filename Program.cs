@@ -3,6 +3,8 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 app.UseHttpsRedirection();
 
+const bool forecastEnabled = false;
+
 var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -10,6 +12,9 @@ var summaries = new[]
 
 app.MapGet("/weatherforecast", () =>
 {
+    if (!forecastEnabled)
+        return Results.NotFound();
+
     var forecast = Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
@@ -18,7 +23,7 @@ app.MapGet("/weatherforecast", () =>
             summaries[Random.Shared.Next(summaries.Length)]
         ))
         .ToArray();
-    return forecast;
+    return Results.Ok(forecast);
 });
 
 app.Run();
