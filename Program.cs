@@ -11,7 +11,6 @@ builder.Services
     .AddFeatureFilter<TargetingFilter>();
 
 var app = builder.Build();
-app.UseHttpsRedirection();
 
 var weatherforecastGroup = app.MapGroup("/weatherforecast")
     .AddEndpointFilter(new FeatureFilter("WeatherForecast"));
