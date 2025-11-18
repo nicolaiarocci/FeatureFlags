@@ -5,7 +5,6 @@ builder.Services
     .AddFeatureManagement(builder.Configuration.GetSection("FeatureFlags"));
 
 var app = builder.Build();
-app.UseHttpsRedirection();
 
 var summaries = new[]
 {
