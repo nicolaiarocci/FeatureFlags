@@ -17,7 +17,7 @@ builder.Services
 var app = builder.Build();
 
 var weatherforecastGroup = app.MapGroup("/weatherforecast")
-    .AddEndpointFilter(new FeatureFilter("WeatherForecast"));
+    .AddEndpointFilter(new EndpointFilter("WeatherForecast"));
 
 var summaries = new[]
 {
