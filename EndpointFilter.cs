@@ -2,7 +2,7 @@ using Microsoft.FeatureManagement;
 
 namespace FeatureFlags;
 
-public sealed class FeatureFilter(string FeatureFlag) : IEndpointFilter
+public sealed class EndpointFilter(string FeatureFlag) : IEndpointFilter
 {
     public async ValueTask<object?> InvokeAsync(
         EndpointFilterInvocationContext context,
