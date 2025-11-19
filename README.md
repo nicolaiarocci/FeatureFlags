@@ -279,7 +279,7 @@ public class MyCustomFilter : IFeatureFilter
 
 ---
 
-### 12-custom-filter-with-parameters (⭐ CURRENT)
+### 12-custom-filter-with-parameters
 **Custom filter with parameters and context**
 
 ```bash
@@ -376,11 +376,11 @@ curl -H "X-Lucky-Number: 47" http://localhost:5000/weatherforecast
 
 ### Feature Flags
 Feature flags enable you to:
-- ✅ Separate deployment from feature release
-- ✅ Test features in production with limited users
-- ✅ Immediate rollback without re-deployment
-- ✅ A/B testing and experimentation
-- ✅ Gradual releases (canary releases)
+- Separate deployment from feature release
+- Test features in production with limited users
+- Immediate rollback without re-deployment
+- A/B testing and experimentation
+- Gradual releases (canary releases)
 
 ### Microsoft.FeatureManagement
 Official Microsoft library that provides:
@@ -420,4 +420,4 @@ Code sourced from Tim Deschryver's excellent [blog series](https://timdeschryver
 
 ---
 
-**Enjoy the session! 🚀**
+**Enjoy the session!**
