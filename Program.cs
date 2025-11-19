@@ -26,7 +26,7 @@ app.MapGet("/weatherforecast", () =>
         .ToArray();
     return Results.Ok(forecast);
 })
-.AddEndpointFilter(new FeatureFilter("WeatherForecast"));
+.AddEndpointFilter(new EndpointFilter("WeatherForecast"));
 
 app.Run();
 
