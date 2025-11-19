@@ -2,13 +2,15 @@
 
 Demo project for my December 3rd session at **WPC 2025** on Feature Flags management in ASP.NET Core.
 
-## 📋 Overview
+A [MVC version](https://github.com/nicolaiarocci/FeatureFlagsMvc?tab=readme-ov-file) is also available.
+
+## Overview
 
 This project demonstrates how to implement and use feature flags in an ASP.NET Core 9.0 application, starting from a basic example to advanced implementations with custom filters.
 
 The application is a simple API that exposes a `/weatherforecast` endpoint whose availability is controlled through feature flags.
 
-## 🎯 Session Goals
+## Session Goals
 
 - Understand what feature flags are and why they are useful
 - Learn how to use `Microsoft.FeatureManagement.AspNetCore`
@@ -16,7 +18,7 @@ The application is a simple API that exposes a `/weatherforecast` endpoint whose
 - Use built-in filters for common scenarios
 - Create custom filters for specific business logic
 
-## 🌳 Branches and Progression
+## Branches and Progression
 
 The project is structured in sequential branches, each introducing new concepts. Follow the numerical order for the best learning experience.
 
@@ -332,7 +334,7 @@ curl -H "X-Lucky-Number: 42" http://localhost:5000/weatherforecast
 curl -H "X-Lucky-Number: 47" http://localhost:5000/weatherforecast
 ```
 
-## 🚀 How to Use This Project
+## How to Use This Project
 
 ### Prerequisites
 - .NET 9.0 SDK
@@ -370,7 +372,7 @@ curl http://localhost:5000/weatherforecast
 curl -H "X-Lucky-Number: 47" http://localhost:5000/weatherforecast
 ```
 
-## 📚 Key Concepts
+## Key Concepts
 
 ### Feature Flags
 Feature flags enable you to:
@@ -393,7 +395,7 @@ Official Microsoft library that provides:
 - **TimeWindow**: Enables in specific time intervals
 - **Targeting**: Enables for specific users/groups
 
-## 🎓 Code Structure
+## Code Structure
 
 ```
 FeatureFlags/
@@ -405,12 +407,12 @@ FeatureFlags/
 └── FeatureFlags.csproj            # Project dependencies
 ```
 
-## 📖 Resources
+## Resources
 - [Microsoft.FeatureManagement Documentation](https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-feature-flags-dotnet-core)
 - [Feature Flags Best Practices](https://learn.microsoft.com/en-us/devops/operate/progressive-experimentation-feature-flags)
 - [ASP.NET Core Documentation](https://learn.microsoft.com/en-us/aspnet/core/)
 
-## 👤 Author
+## Author
 [Nicola Iarocci](https://nicolaiarocci.com)
 
 ## Credits
